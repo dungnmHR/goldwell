@@ -121,7 +121,9 @@
 									<div class="form-group {{ $errors->has('des_s') ? 'has-error' : '' }}">
 									 	<label class="col-sm-2 control-label">Miêu tả ngắn (*) </label>
 									 	<div class="col-sm-10">
-									 		<input type="text" class="form-control" name="des_s" id="des_s" value="{{old('des_s')}}">
+									 		<textarea name="des_s" id="des_s" class="form-control my-editor" rows="20" required>
+									 		 	
+									 		</textarea>
 									 	</div>
 									</div>
 
@@ -145,7 +147,7 @@
 									<div class="form-group {{ $errors->has('des_f') ? 'has-error' : '' }}">
 									 	<label class="col-sm-2 control-label">Miêu tả chi tiết (*) </label>
 									 	<div class="col-sm-10">
-									 		 <textarea name="content" id="des_f" class="form-control my-editor" rows="20" required>
+									 		 <textarea name="des_f" id="des_f" class="form-control my-editor" rows="20" required>
 									 		 	
 									 		 </textarea>
 									 	</div>
@@ -218,13 +220,21 @@
 
 @section('script')
 <!-- slick carousel-->
+<script src="{{asset('vendor/unisharp/laravel-ckeditor/ckeditor.js')}}"></script>
 <script src="{{asset('assets/js/plugins/slick/slick.min.js')}}"></script>
 <script src="{{asset('assets/js/plugins/jasny/jasny-bootstrap.min.js')}}"></script>
 
 <script>
+	var fmPath = '/goldwell/filemanager/dialog.php?type=2&editor=ckeditor&relative_url=1&fldr=';
 	$(document).ready(function()
 	{
+		CKEDITOR.replace( 'des_f' ,{
+	      filebrowserBrowseUrl : fmPath,
+	      filebrowserUploadUrl : fmPath,
+	      filebrowserImageBrowseUrl : '/goldwell/filemanager/dialog.php?type=1&editor=ckeditor&relative_url=1&fldr=',
+	     });
 		
+		CKEDITOR.replace( 'des_s' );
 		$('.product-images').slick({
 			dots: true
 		});
