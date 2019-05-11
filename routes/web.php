@@ -25,6 +25,15 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::prefix('user')->group(function () {
     	Route::get('/list', '\App\Http\Controllers\Admin\UserController@index')->name('list-user');
     });
+    //Quản lý thông tin hệ thống
+    Route::prefix('product')->group(function () {
+        //quản lí trang liên kết
+        Route::get('/create', function () {
+                return view('admin.products.create',['flag' => 'p_n']);
+            })->name('create-product');
+
+
+    });
 
     //Quản lý thông tin hệ thống
     Route::prefix('system')->group(function () {
