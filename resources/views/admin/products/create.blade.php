@@ -130,17 +130,17 @@
 									<div class="form-group {{ $errors->has('banner') ? 'has-error' : '' }}">
 									 	<label class="col-sm-2 control-label">Banner (*)</label>
 									 	<div class="col-sm-10">
-									 		<div class="fileinput fileinput-new input-group" data-provides="fileinput">
-												<div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> 
-													<span class="fileinput-filename"></span>
-												</div>
-												<span class="input-group-addon btn btn-default btn-file">
-													<span class="fileinput-new">Chọn ảnh</span>
-													<span class="fileinput-exists">Thay đổi</span>
-													<input type="file" name="logo">
-												</span>
-												<a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Xóa</a>
-											</div>		
+									 		<div class="input-group">
+	                                            <span class="input-group-btn">
+	                                                <a href="/goldwell/filemanager/dialog.php?type=1&field_id=thumb_0"
+	                                                   class="btn btn-primary red iframe-btn" id="iframe-btn-0"><i
+	                                                            class="fa fa-picture-o"></i>Chọn ảnh</a>
+	                                            </span>
+                                            	<input id="thumb_0" class="form-control" type="text" name="banner" required>
+                                        	</div>
+	                                        <div id="preview">
+
+	                                        </div>
 										</div>
 									</div>
 
@@ -153,7 +153,18 @@
 									 	</div>
 									</div>
 
-	                            	
+									<div class="form-group">
+										<label class="col-sm-2 control-label">Danh mục(*)</label>
+
+	                                    <div class="col-sm-5">
+	                                    	<select class="form-control m-b" name="account">
+	                                        <option>option 1</option>
+		                                        <option>option 2</option>
+		                                        <option>option 3</option>
+		                                        <option>option 4</option>
+	                                    	</select>                                       
+                                    	</div>
+                                	</div>	                            	
                             	</div>
 							</div>
 						</div>
@@ -223,6 +234,8 @@
 <script src="{{asset('vendor/unisharp/laravel-ckeditor/ckeditor.js')}}"></script>
 <script src="{{asset('assets/js/plugins/slick/slick.min.js')}}"></script>
 <script src="{{asset('assets/js/plugins/jasny/jasny-bootstrap.min.js')}}"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
 
 <script>
 	var fmPath = '/goldwell/filemanager/dialog.php?type=2&editor=ckeditor&fldr=';
@@ -239,6 +252,26 @@
 	      filebrowserUploadUrl : fmPath,
 	      filebrowserImageBrowseUrl : '/goldwell/filemanager/dialog.php?type=1&editor=ckeditor&fldr=',
 	     });
+		$('#iframe-btn-0').fancybox({
+            'width': 900,
+            'height': 900,
+            'type': 'iframe',
+            'autoScale': false,
+            'autoSize': false,
+            afterClose: function () {
+                var thumb = $('#thumb_0').val();
+                if (thumb) {
+                    var html = '<div class="img_preview"><img src="' + thumb + '"/>';
+                    html += '<input type="hidden" name="image" value="' + thumb + '" /> </div>';
+                    $('#preview').html(html);
+                }
+            }
+        });
+
+        $('.product-images').slick({
+            dots: true
+        });
+
     });
 </script>
 @stop
