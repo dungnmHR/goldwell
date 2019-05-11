@@ -225,19 +225,20 @@
 <script src="{{asset('assets/js/plugins/jasny/jasny-bootstrap.min.js')}}"></script>
 
 <script>
-	var fmPath = '/goldwell/filemanager/dialog.php?type=2&editor=ckeditor&relative_url=1&fldr=';
+	var fmPath = '/goldwell/filemanager/dialog.php?type=2&editor=ckeditor&fldr=';
 	$(document).ready(function()
 	{
 		CKEDITOR.replace( 'des_f' ,{
 	      filebrowserBrowseUrl : fmPath,
 	      filebrowserUploadUrl : fmPath,
-	      filebrowserImageBrowseUrl : '/goldwell/filemanager/dialog.php?type=1&editor=ckeditor&relative_url=1&fldr=',
+	      filebrowserImageBrowseUrl : '/goldwell/filemanager/dialog.php?type=1&editor=ckeditor&fldr=',
 	     });
 		
-		CKEDITOR.replace( 'des_s' );
-		$('.product-images').slick({
-			dots: true
-		});
+		CKEDITOR.replace( 'des_s' ,{
+	      filebrowserBrowseUrl : fmPath,
+	      filebrowserUploadUrl : fmPath,
+	      filebrowserImageBrowseUrl : '/goldwell/filemanager/dialog.php?type=1&editor=ckeditor&fldr=',
+	     });
     });
 </script>
 @stop
