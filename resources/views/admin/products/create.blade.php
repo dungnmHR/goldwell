@@ -2,7 +2,10 @@
 @extends('admin.layouts.default')
 
 @section('css')
+<link href="{{asset('assets/css/plugins/slick/slick.css')}}" rel="stylesheet">
 <link href="{{asset('assets/css/plugins/slick/slick-theme.css')}}" rel="stylesheet">
+<link href="{{asset('assets/css/plugins/jasny/jasny-bootstrap.min.css')}}" rel="stylesheet">
+<link rel="stylesheet" href="{{asset('assets/fancybox/source/jquery.fancybox.css')}}">
 @stop
 
 {{-- Page content --}}
@@ -58,7 +61,44 @@
                             </div>
                             <div id="style" class="panel-collapse collapse">
                             	<div class="panel-body">
-	                            	
+                            		<div class="ibox product-detail">
+                        			 	<div class="ibox-content">
+                        			 		<div class="row">
+                        			 			<div class="col-md-5">
+	                                    			<div class="product-images">
+	                                    				<div>
+				                                            <div class="image-imitation">
+				                                                [Giao diện 1]
+				                                            </div>
+				                                        </div>
+				                                        <div>
+				                                            <div class="image-imitation">
+				                                                [Giao diện 2]
+				                                            </div>
+				                                        </div>
+	                                    			</div>
+                                    			</div>
+                                    			<div class="col-md-7">
+                                    				<h2 class="font-bold m-b-xs">
+                                    					Chọn giao diện hiển thị cho sản phẩm mới
+                                    				</h2>
+                                    				<small>Xem mẫu giao diện ở slide bên cạnh và lựa chọn theo tên</small>
+                                    				<hr>
+                                    				<div class="text-left">
+				                                        <div class="btn-group">
+				                                        	<input type="hidden" name="style_p" id="style_p" value='0'>
+				                                            <a onclick="chooseStyle()"  class="btn btn-success btn-sm">
+				                                            	<i class="fa fa-star"></i> Giao diện 1
+				                                            </a>
+				                                            <a onclick="chooseStyle()" class="btn btn-white btn-sm">
+				                                            	<i class="fa fa-star"></i> Giao diện 2
+				                                            </a>
+				                                        </div>
+				                                    </div>                                				
+                                    			</div>
+                        			 		</div>
+                        			 	</div>
+                        			</div>	                            	
                             	</div>
 							</div>
 						</div>
@@ -72,6 +112,45 @@
                             </div>
                             <div id="info" class="panel-collapse collapse">
                             	<div class="panel-body">
+                            		<div class="form-group {{ $errors->has('name_p') ? 'has-error' : '' }}">
+									 	<label class="col-sm-2 control-label">Tên sản phẩm (*) </label>
+									 	<div class="col-sm-10">
+									 		<input type="text" class="form-control" name="name_p" id="name_p" value="{{old('name_p')}}">
+									 	</div>
+									</div>
+									<div class="form-group {{ $errors->has('des_s') ? 'has-error' : '' }}">
+									 	<label class="col-sm-2 control-label">Miêu tả ngắn (*) </label>
+									 	<div class="col-sm-10">
+									 		<input type="text" class="form-control" name="des_s" id="des_s" value="{{old('des_s')}}">
+									 	</div>
+									</div>
+
+									<div class="form-group {{ $errors->has('banner') ? 'has-error' : '' }}">
+									 	<label class="col-sm-2 control-label">Banner (*)</label>
+									 	<div class="col-sm-10">
+									 		<div class="fileinput fileinput-new input-group" data-provides="fileinput">
+												<div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> 
+													<span class="fileinput-filename"></span>
+												</div>
+												<span class="input-group-addon btn btn-default btn-file">
+													<span class="fileinput-new">Chọn ảnh</span>
+													<span class="fileinput-exists">Thay đổi</span>
+													<input type="file" name="logo">
+												</span>
+												<a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Xóa</a>
+											</div>		
+										</div>
+									</div>
+
+									<div class="form-group {{ $errors->has('des_f') ? 'has-error' : '' }}">
+									 	<label class="col-sm-2 control-label">Miêu tả chi tiết (*) </label>
+									 	<div class="col-sm-10">
+									 		 <textarea name="content" id="des_f" class="form-control my-editor" rows="20" required>
+									 		 	
+									 		 </textarea>
+									 	</div>
+									</div>
+
 	                            	
                             	</div>
 							</div>
@@ -140,6 +219,7 @@
 @section('script')
 <!-- slick carousel-->
 <script src="{{asset('assets/js/plugins/slick/slick.min.js')}}"></script>
+<script src="{{asset('assets/js/plugins/jasny/jasny-bootstrap.min.js')}}"></script>
 
 <script>
 	$(document).ready(function()
