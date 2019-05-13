@@ -69,7 +69,7 @@ class ProductController extends Controller
     {
         if (isset($request->sp_botro)){
             $request->merge(['sp_botro' => implode(";", $request->sp_botro)]);  
-        }  
+        }
         Product::create($request->all());
         $product_ = Product::where('status', 1)->get();
         return view('admin.products.list',['flag' => 'p_l', 'products' => $product_]);

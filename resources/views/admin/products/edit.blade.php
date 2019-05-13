@@ -73,14 +73,10 @@
 											<div class="col-md-5">
 												<div class="product-images">
 													<div>
-														<div class="image-imitation">
-															[Giao diện 1]
-														</div>
+														<img src="http://localhost:8080/goldwell/public/source/top-nhung-hinh-anh-gai-dep-gai-xinh-nhat-hien-nay-15.png" style="max-width: 100%; max-height: 100%;">
 													</div>
 													<div>
-														<div class="image-imitation">
-															[Giao diện 2]
-														</div>
+														<img src="http://localhost:8080/goldwell/public/source/banner-1.jpg" style="max-width: 100%; max-height: 100%;">
 													</div>
 												</div>
 											</div>
@@ -92,15 +88,14 @@
 												<hr>
 												<div class="text-left">
 													<div class="btn-group">
-														<input type="hidden" name="style_p" id="style_p" value='0'>
-														<a onclick="chooseStyle()"  class="btn btn-success btn-sm">
+														<input type="hidden" name="dis_type" id="dis_type" value='{{$product->dis_type}}'>
+														<a data-style=1 class="btn {{$product->dis_type == 1 ? 'btn-success': 'btn-white'}} btn-sm choose-style">
 															<i class="fa fa-star"></i> Giao diện 1
 														</a>
-														<a onclick="chooseStyle()" class="btn btn-white btn-sm">
+														<a data-style=2 class="btn {{$product->dis_type == 2 ? 'btn-success': 'btn-white'}}  btn-sm choose-style">
 															<i class="fa fa-star"></i> Giao diện 2
 														</a>
 													</div>
-													<input type="hidden" name="dis_type" id="dis_type" value="{{$product->dis_type}}">
 												</div>                                				
 											</div>
 										</div>
@@ -248,6 +243,19 @@
 	var fmPath = '/goldwell/filemanager/dialog.php?type=2&editor=ckeditor&fldr=';
 	$(document).ready(function()
 	{
+		$(".choose-style").on('click', function() {
+		  //  ret = DetailsView.GetProject($(this).attr("#data-id"), OnComplete, OnTimeOut, OnError);
+		  style = $(this).attr("data-style");
+		  $(".choose-style").each(function( index ) {
+			  $( this ).removeClass("btn-success");
+			  $( this ).removeClass("btn-white");
+			  $( this ).addClass("btn-white");
+		  });
+		  $( this ).removeClass("btn-white");
+		  $( this ).addClass("btn-success");
+		  $("#dis_type").val(style);
+		});
+
 		CKEDITOR.replace( 'des_f' ,{
 			filebrowserBrowseUrl : fmPath,
 			filebrowserUploadUrl : fmPath,
