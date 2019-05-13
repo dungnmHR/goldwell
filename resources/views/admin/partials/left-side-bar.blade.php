@@ -65,7 +65,7 @@
                                 <a href="#">Danh sách</a>
                             </li>
                             <li class={{$flag == "cat_p_n" ? "active" : ""}}>
-                                <a href="#">Thêm mới</a>
+                                <a href="{{route('create-dm')}}">Thêm mới</a>
                             </li>
                         </ul>
                     </li>

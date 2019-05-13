@@ -36,6 +36,10 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
         Route::get('/{slug}/xoa', '\App\Http\Controllers\Admin\ProductController@destroy')->name('delete-sp');
 
         //Thong tin trang danh muc san pham
+        Route::get('/danh-muc/tao-moi', '\App\Http\Controllers\Admin\CatController@create')->name('create-dm');
+
+
+
         Route::get('/thong-tin-trang', '\App\Http\Controllers\Admin\ProductController@getInfoTrangDanhMuc')->name('thong-tin-trang');
         Route::get('/thong-tin-trang/thay-doi', '\App\Http\Controllers\Admin\ProductController@updateInfoTrangDanhMuc')
         ->name('thong-tin-trang-td');
