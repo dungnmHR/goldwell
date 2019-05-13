@@ -25,15 +25,29 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::prefix('user')->group(function () {
     	Route::get('/list', '\App\Http\Controllers\Admin\UserController@index')->name('list-user');
     });
-    //Quản lý thông tin hệ thống
-    Route::prefix('product')->group(function () {
+    //Quản lý sản phẩm
+    Route::prefix('san-pham')->group(function () {
         //quản lí trang liên kết
-        Route::get('/create', function () {
+        Route::get('/tao-moi', function () {
                 return view('admin.products.create',['flag' => 'p_n']);
-            })->name('create-product');
+        })->name('create-sp');
 
-
+        //Thong tin trang danh muc san pham
+        Route::get('/thong-tin-trang', '\App\Http\Controllers\Admin\ProductController@getInfoTrangDanhMuc')->name('thong-tin-trang');
+        Route::get('/thong-tin-trang/thay-doi', '\App\Http\Controllers\Admin\ProductController@updateInfoTrangDanhMuc')
+        ->name('thong-tin-trang-td');
+        Route::post('/thong-tin-trang/thay-doi', '\App\Http\Controllers\Admin\ProductController@storeInfoTrangDanhMuc')
+        ->name('thong-tin-trang-td');
     });
+
+    //Quản lý quy trình
+    Route::prefix('quy-trinh')->group(function () {
+        //quản lí trang liên kết
+        Route::get('/tao-moi', function () {
+                return view('admin.quy-trinh.create',['flag' => 'quy_t_n']);
+        })->name('create-qt');
+    });
+
 
     //Quản lý thông tin hệ thống
     Route::prefix('system')->group(function () {
@@ -53,4 +67,4 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', '\App\Http\Controllers\Admin\ProductController@index')->name('home');

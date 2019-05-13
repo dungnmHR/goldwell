@@ -30,21 +30,33 @@
                 <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Bảng tin</span></span></a>
             </li>
 
-            <li class={{$flag == "p_l" || $flag == "p_n" || $flag == "cat_p_l" 
-                                            || $flag == "cat_p_n" || $flag == "setup_p" ? "active" : ""}}>
+            <li class={{$flag == "p_l" || $flag == "p_n" || $flag == "cat_p_l" || $flag == "quy_t_l" || $flag == "quy_t_n"   
+                        || $flag == "cong_nghe" || $flag == "cat_p_n" || $flag == "gd" ? "active" : ""}}>
                 <a href="#"><i class="fa fa-cubes"></i> 
                     <span class="nav-label">PRODUCTS</span>
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav nav-second-level collapse">
-                    <li class={{$flag == "setup_p" ? "active" : ""}}>
-                        <a href="#">Giao diện trang</a>
-                    </li>
                     <li class={{$flag == "p_l" ? "active" : ""}}>
                         <a href="#">Danh sách</a>
                     </li>
                     <li class={{$flag == "p_n" ? "active" : ""}}>
-                        <a href="#">Thêm mới</a>
+                        <a href="{{route('create-sp')}}">Thêm mới</a>
+                    </li>
+                    <hr/>                 
+                    <li class={{$flag == "quy_t_l" || $flag == "quy_t_n" ? "active" : ""}}>
+                        <a href="#">Quy trình<span class="fa arrow"></span></a>
+                        <ul class="nav nav-third-level">
+                            <li class={{$flag == "quy_t_l" ? "active" : ""}}>
+                                <a href="">Danh sách</a>
+                            </li>
+                            <li class={{$flag == "quy_t_n" ? "active" : ""}}>
+                                <a href="{{route('create-qt')}}">Thêm mới</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class={{$flag == "cong_nghe" ? "active" : ""}}>
+                        <a href="#">Công nghệ</a>
                     </li>
                     <li class={{$flag == "cat_p_l" || $flag == "cat_p_n" ? "active" : ""}}>
                         <a href="#">Danh mục Product<span class="fa arrow"></span></a>
@@ -57,6 +69,11 @@
                             </li>
                         </ul>
                     </li>
+                    <hr/>
+                    <li class={{$flag == "gd" ? "active" : ""}}>
+                        <a href="{{route('thong-tin-trang')}}">Trang danh mục</a>
+                    </li>
+                    
                 </ul>                   
             </li>
 
