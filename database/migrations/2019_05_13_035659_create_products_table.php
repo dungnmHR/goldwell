@@ -15,6 +15,15 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
+            $table->integer('cat_id');
+            $table->integer('dis_type');
+            $table->string('slug')->unique();
+            $table->text('image');
+            $table->text('sp_botro');
+            $table->text('des_s');
+            $table->text('des_f');
+            $table->boolean('status');
             $table->timestamps();
         });
     }

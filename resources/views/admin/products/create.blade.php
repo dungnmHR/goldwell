@@ -54,7 +54,7 @@
 			</div>
 			{{-- START FORM --}}
 			<div class="ibox-content">
-				<form id="form" class="form-horizontal" role="form" action="#" 
+				<form id="form" class="form-horizontal" role="form" action="{{route('create-sp')}}" 
 				enctype="multipart/form-data" method="POST">
 				@csrf
 				<div class="panel-group payments-method" id="accordion">
@@ -100,6 +100,7 @@
 															<i class="fa fa-star"></i> Giao diện 2
 														</a>
 													</div>
+													<input type="hidden" name="dis_type" id="dis_type" value="1">
 												</div>                                				
 											</div>
 										</div>
@@ -118,14 +119,14 @@
 						</div>
 						<div id="info" class="panel-collapse collapse">
 							<div class="panel-body">
-								<div class="form-group {{ $errors->has('name_p') ? 'has-error' : '' }}">
+								<div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
 									<label class="col-sm-2 control-label">Tên sản phẩm (*) </label>
 									<div class="col-sm-10">
-										<input type="text" class="form-control" name="name_p" id="name_p" value="{{old('name_p')}}">
+										<input type="text" class="form-control" name="name" id="name" value="{{old('name')}}">
 									</div>
 								</div>
 
-								<div class="form-group {{ $errors->has('name_p') ? 'has-error' : '' }}">
+								<div class="form-group {{ $errors->has('slug') ? 'has-error' : '' }}">
 									<label class="col-sm-2 control-label">Slug (*) </label>
 									<div class="col-sm-10">
 										<input type="text" class="form-control" name="slug" id="slug" value="{{old('slug')}}">
@@ -150,7 +151,7 @@
 												class="btn btn-primary red iframe-btn" id="iframe-btn-0"><i
 												class="fa fa-picture-o"></i>Chọn ảnh</a>
 											</span>
-											<input id="thumb_0" class="form-control" type="text" name="banner" required>
+											<input id="thumb_0" class="form-control" type="text" name="image" required>
 										</div>
 										<div id="preview">
 
@@ -171,19 +172,16 @@
 									<label class="col-sm-2 control-label">Danh mục(*)</label>
 
 									<div class="col-md-4">
-										<select class="form-control m-b" name="account">
-											<option>option 1</option>
-											<option>option 2</option>
-											<option>option 3</option>
-											<option>option 4</option>
+										<select class="form-control m-b" name="cat_id">
+											<option value="1">Danh mục 1</option>
+											<option value="2">Danh mục 2</option>
 										</select>                                       
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-2 control-label">Sản phẩm bổ trợ</label>
-
 									<div class="col-md-4">
-										<select class="select2_demo_2 form-control" multiple="multiple">
+										<select class="select2_demo_2 form-control" name="sp_botro[]" multiple="multiple">
 	                                        <option value="Mayotte">Mayotte</option>
 	                                        <option value="Mexico">Mexico</option>
 	                                        <option value="Micronesia, Federated States of">Micronesia, Federated States of</option>
@@ -203,6 +201,16 @@
 	                                        <option value="New Zealand">New Zealand</option>
 	                                        <option value="Nicaragua">Nicaragua</option>
 	                                    </select>	                                           
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Trạng thái (*)</label>
+
+									<div class="col-md-4">
+										<select class="form-control m-b" name="status">
+											<option value="1">Công khai</option>
+											<option value="0">Không công khai</option>
+										</select>                                       
 									</div>
 								</div>	 	                            	
 							</div>

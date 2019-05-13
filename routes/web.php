@@ -27,10 +27,9 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     });
     //Quản lý sản phẩm
     Route::prefix('san-pham')->group(function () {
-        //quản lí trang liên kết
-        Route::get('/tao-moi', function () {
-                return view('admin.products.create',['flag' => 'p_n']);
-        })->name('create-sp');
+        //quản lí sản phẩm
+        Route::get('/tao-moi', '\App\Http\Controllers\Admin\ProductController@create')->name('create-sp');
+        Route::post('/tao-moi', '\App\Http\Controllers\Admin\ProductController@store')->name('create-sp');
 
         //Thong tin trang danh muc san pham
         Route::get('/thong-tin-trang', '\App\Http\Controllers\Admin\ProductController@getInfoTrangDanhMuc')->name('thong-tin-trang');

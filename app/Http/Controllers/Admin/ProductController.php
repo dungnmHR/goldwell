@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductInfoCatRequest as InfoRequest;
+use App\Http\Requests\ProductRequest as ProductRequest;
+use App\Product;
 
 class ProductController extends Controller
 {
@@ -56,6 +58,7 @@ class ProductController extends Controller
     public function create()
     {
         //
+        return view('admin.products.create',['flag' => 'p_n']);
     }
 
     /**
@@ -64,9 +67,13 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        //
+        if (isset($request->sp_botro)){
+            $request->merge(['sp_botro' => implode(";", $request->sp_botro)]);  
+        }  
+        $product = Product::create($request->all());
+
     }
 
     /**
