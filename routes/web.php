@@ -28,8 +28,12 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     //Quản lý sản phẩm
     Route::prefix('san-pham')->group(function () {
         //quản lí sản phẩm
+        Route::get('/danh-sach', '\App\Http\Controllers\Admin\ProductController@index')->name('list-sp');
         Route::get('/tao-moi', '\App\Http\Controllers\Admin\ProductController@create')->name('create-sp');
         Route::post('/tao-moi', '\App\Http\Controllers\Admin\ProductController@store')->name('create-sp');
+        Route::get('/{slug}/sua', '\App\Http\Controllers\Admin\ProductController@edit')->name('update-sp');
+        Route::post('/{slug}/sua', '\App\Http\Controllers\Admin\ProductController@update')->name('update-sp');
+        Route::get('/{slug}/xoa', '\App\Http\Controllers\Admin\ProductController@destroy')->name('delete-sp');
 
         //Thong tin trang danh muc san pham
         Route::get('/thong-tin-trang', '\App\Http\Controllers\Admin\ProductController@getInfoTrangDanhMuc')->name('thong-tin-trang');

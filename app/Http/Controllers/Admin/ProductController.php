@@ -43,11 +43,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
-        config(['product.thong-tin.title' => 'OK']);
-        $fp = fopen(base_path() .'/config/product.php' , 'w');
-        fwrite($fp, '<?php return ' . var_export(config('product'), true) . ';');
-        fclose($fp);
+      
+      $product_ = Product::where('status', 1)->get();
+      return view('admin.products.list',['flag' => 'p_l', 'products' => $product_]);
+
     }
 
     /**
@@ -57,7 +56,6 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
         return view('admin.products.create',['flag' => 'p_n']);
     }
 
@@ -72,7 +70,9 @@ class ProductController extends Controller
         if (isset($request->sp_botro)){
             $request->merge(['sp_botro' => implode(";", $request->sp_botro)]);  
         }  
-        $product = Product::create($request->all());
+        Product::create($request->all());
+        $product_ = Product::where('status', 1)->get();
+        return view('admin.products.list',['flag' => 'p_l', 'products' => $product_]);
 
     }
 
@@ -93,9 +93,11 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
         //
+        $product_ = Product::where('slug', $slug)->first();
+        return view('admin.products.edit',['flag' => 'p_l', 'product' => $product_]);
     }
 
     /**
@@ -105,9 +107,16 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, $slug)
     {
         //
+        $product_ = Product::where('slug', $slug)->first();
+        if (isset($request->sp_botro)){
+            $request->merge(['sp_botro' => implode(";", $request->sp_botro)]);  
+        }
+        $product_->update($request->all());
+        $products = Product::where('status', 1)->get();
+        return view('admin.products.list',['flag' => 'p_l', 'products' => $products]);
     }
 
     /**
@@ -116,8 +125,12 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
         //
+        $product_ = Product::where('slug', $slug)->first();
+        $product_->delete();
+        $products = Product::where('status', 1)->get();
+        return view('admin.products.list',['flag' => 'p_l', 'products' => $products]);
     }
 }

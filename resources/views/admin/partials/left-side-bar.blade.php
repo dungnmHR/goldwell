@@ -38,7 +38,7 @@
                 </a>
                 <ul class="nav nav-second-level collapse">
                     <li class={{$flag == "p_l" ? "active" : ""}}>
-                        <a href="#">Danh sách</a>
+                        <a href="{{route('list-sp')}}">Danh sách</a>
                     </li>
                     <li class={{$flag == "p_n" ? "active" : ""}}>
                         <a href="{{route('create-sp')}}">Thêm mới</a>
