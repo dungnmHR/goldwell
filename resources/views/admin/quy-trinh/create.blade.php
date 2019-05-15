@@ -63,6 +63,17 @@
 				 enctype="multipart/form-data" method="POST">
 				 @csrf
 				 	<div class="form-group">
+						<label class="col-sm-2 control-label">Danh mục </label>
+						<div class="col-md-4">
+							<select class="form-control m-b" name="cat">
+								<option>option 1</option>
+								<option>option 2</option>
+								<option>option 3</option>
+								<option>option 4</option>
+							</select>                                       
+						</div>
+					</div>
+				 	<div class="form-group">
 						<label class="col-sm-2 control-label">Sản phẩm (*)</label>
 						<div class="col-md-4">
 							<select class="form-control m-b" name="account">

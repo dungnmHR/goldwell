@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCatsTable extends Migration
+class CreateQuytrinhsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateCatsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cats', function (Blueprint $table) {
+        Schema::create('quytrinhs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->integer('cat_id')->nullable();
-            $table->integer('type');
-            $table->string('slug')->unique();
+            $table->integer('product_id');
+            $table->string('image');
+            $table->text('content');
             $table->boolean('status');
             $table->timestamps();
         });
@@ -31,6 +30,6 @@ class CreateCatsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cats');
+        Schema::dropIfExists('quytrinhs');
     }
 }

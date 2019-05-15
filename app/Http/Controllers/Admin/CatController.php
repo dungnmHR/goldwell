@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Cat;
 
 class CatController extends Controller
 {
@@ -15,6 +16,8 @@ class CatController extends Controller
     public function index()
     {
         //
+        $cats = Cat::where('status',1)->get();
+        return view('admin.cats.list',['cats'=>$cats], ['flag'=>'cat_p_l']);
     }
 
     /**
@@ -25,6 +28,8 @@ class CatController extends Controller
     public function create()
     {
         //
+        $cat_p_ = Cat::where('status',1)->where('type',0)->get();
+        $cat_c_ = Cat::where('status',1)->where('type',1)->get();
         return view('admin.cats.create',['flag' => 'cat_p_n']);
     }
 

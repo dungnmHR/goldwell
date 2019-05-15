@@ -37,6 +37,10 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 
         //Thong tin trang danh muc san pham
         Route::get('/danh-muc/tao-moi', '\App\Http\Controllers\Admin\CatController@create')->name('create-dm');
+        Route::get('/danh-muc/danh-sach', '\App\Http\Controllers\Admin\CatController@index')->name('list-dm');
+
+        //quy trinh san pham
+        Route::get('/quy-trinh/tao-moi', '\App\Http\Controllers\Admin\QuytrinhController@create')->name('create-qt');
 
 
 
@@ -67,8 +71,6 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
                 return view('admin.system.lien-ket.them-moi',['flag' => 'lien_ket']);
             })->name('them-moi-lien-ket');
         });
-
-
     });
 });
 

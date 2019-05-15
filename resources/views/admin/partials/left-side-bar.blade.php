@@ -62,7 +62,7 @@
                         <a href="#">Danh mục Product<span class="fa arrow"></span></a>
                         <ul class="nav nav-third-level">
                             <li class={{$flag == "cat_p_l" ? "active" : ""}}>
-                                <a href="#">Danh sách</a>
+                                <a href="{{route('list-dm')}}">Danh sách</a>
                             </li>
                             <li class={{$flag == "cat_p_n" ? "active" : ""}}>
                                 <a href="{{route('create-dm')}}">Thêm mới</a>

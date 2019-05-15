@@ -15,10 +15,10 @@
 				<a href="{{route('dashboard')}}">Home</a>
 			</li>
 			<li>
-				<a href="#">Danh sách sản phẩm</a>
+				<a href="#">Tất cả danh mục</a>
 			</li>
 			<li class="active">
-				<strong>Tất cả các sản phẩm</strong>
+				<strong>Tất cả danh mục sản phẩm</strong>
 			</li>
 		</ol>
 	</div>
@@ -49,18 +49,20 @@
 						<thead>
 							<tr>
 								<th class="text-center">Tên danh mục</th>
+								<th class="text-center">Loại danh mục</th>
 								<th class="text-center">Danh mục cha</th>
 								<th class="text-center">Action</th>
 							</tr>
 						</thead>
 						<tbody>
-							@foreach($products as $p)
+							@foreach($cats as $c)
 								<tr>
-									<td class="text-center">{{$c->name}}</td>					
-                                    <td class="text-center">{!! $p->des_s !!}</td>
+									<td class="text-center">{{$c->name}}</td>
+									<td class="text-center">{{$c->type == 0 ? "Có danh mục con" : "Không có danh mục con"}}</td>									
+                                    <td class="text-center">{{$c->parent}}</td>
 									<td class="text-center">
-										<a href="{{route('update-sp',['slug'=>$p->slug])}}" class="btn btn-warning btn-circle"><i class="fa fa-edit"></i></a>
-										<a href="{{route('delete-sp',['slug'=>$p->slug])}}" class="btn btn-danger btn-circle"><i class="fa fa-trash"></i></a>
+										<a href="#" class="btn btn-warning btn-circle"><i class="fa fa-edit"></i></a>
+										<a href="#" class="btn btn-danger btn-circle"><i class="fa fa-trash"></i></a>
 									</td>
 								</tr>
 							@endforeach
